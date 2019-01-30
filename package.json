@@ -10,7 +10,8 @@
 		"test": "jest",
 		"test:watch": "jest --watchAll",
 		"build:dev": "webpack --mode=development",
-		"build:prod": "webpack --mode=production"
+		"build:prod": "webpack --mode=production",
+		"pretty": "prettier --config ./prettier.config.js --write \"**/*.{ts,tsx}\""
 	},
 	"keywords": [
 		"react",
@@ -59,12 +60,12 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged"
+			"pre-commit": "npm run pretty"
 		}
 	},
 	"lint-staged": {
-		"*.{ts,tsx,js,json,css,md}": [
-			"prettier --write",
+		"*.*": [
+			"npm run pretty",
 			"git add"
 		]
 	}
