@@ -19,11 +19,7 @@ function Movie({ title, imdbID, poster }: any) {
 	return (
 		<div>
 			<a href={`http://imdb.com/title/${imdbID}`}>{title}</a>
-			<img
-				className="movie-poster"
-				src={poster}
-				alt={`Poster for ${title}`}
-			/>
+			<img className="movie-poster" src={poster} alt={`Poster for ${title}`} />
 		</div>
 	);
 }

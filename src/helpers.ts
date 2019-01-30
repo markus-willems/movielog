@@ -17,10 +17,7 @@ function combineReducers(
 		const nextState: any = {};
 		for (const key of partialStates) {
 			const reducer = reducers[key];
-			nextState[key] = reducer(
-				state[key] ? state[key] : undefined,
-				action
-			);
+			nextState[key] = reducer(state[key] ? state[key] : undefined, action);
 		}
 		return nextState;
 	};
