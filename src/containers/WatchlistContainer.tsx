@@ -9,9 +9,9 @@ import Movies from '../components/Movies';
 
 import { addToWatched, addToWatchlist } from '../actions';
 
-import { selectAllMovies } from '../reducers/movies';
+import { selectWatchlistMovies } from '../reducers/movies';
 
-function MoviesContainer() {
+function WatchlistContainer() {
     const state = React.useContext(DataProviderStateContext);
     const dispatch = React.useContext(DataProviderDispatchContext);
     return (
@@ -21,7 +21,7 @@ function MoviesContainer() {
 
 function mapStateToProps(state: any) {
     return {
-        movies: selectAllMovies(state.movies),
+        movies: selectWatchlistMovies(state.movies),
     };
 }
 
@@ -34,4 +34,4 @@ function mapDispatchToProps(
     };
 }
 
-export default MoviesContainer;
+export default WatchlistContainer;

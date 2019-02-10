@@ -1,0 +1,37 @@
+@import 'colors.scss';
+
+.container {
+    display: flex;
+    width: 700px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    background: $color1;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    flex: 1 1 100%;
+}
+
+main {
+    flex: 1 1 100%;
+}
+
+footer {
+    flex: 1 1 100%;
+}
+
+.movies {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movies__movie {
+    background: gray;
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    h2 {
+        flex: 1 1 100%;
+    }
+}

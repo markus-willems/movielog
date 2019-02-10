@@ -1,9 +1,10 @@
-import { useReducer } from 'react';
+import React from 'react';
 
 function useRootReducer(rootReducer: ReducerType) {
-    const [state, dispatch] = useReducer(rootReducer, undefined, {
+    const initialState = rootReducer(undefined, {
         type: '@@INIT_STATE@@',
     });
+    const [state, dispatch] = React.useReducer(rootReducer, initialState);
     return [state, dispatch];
 }
 
@@ -13,7 +14,7 @@ function combineReducers(
     } = {}
 ) {
     const partialStates = Object.keys(reducers);
-    return function rootReducer(state: any = {}, action: Action) {
+    return function rootReducer(state: any = {}, action: DispatchAction) {
         const nextState: any = {};
         for (const key of partialStates) {
             const reducer = reducers[key];

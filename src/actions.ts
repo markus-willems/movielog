@@ -1,9 +1,27 @@
 import * as actionTypes from './actionTypes';
 import { searchTitle } from './api/search';
 
+function addToWatched(id: string) {
+    return {
+        type: actionTypes.ADD_TO_WATCHED,
+        data: {
+            id,
+        },
+    };
+}
+
+function addToWatchlist(id: string) {
+    return {
+        type: actionTypes.ADD_TO_WATCHLIST,
+        data: {
+            id,
+        },
+    };
+}
+
 function fetchTitle(
     title: string,
-    dispatch: (obj: Action) => void,
+    dispatch: (obj: DispatchAction) => void,
     callback: () => void = () => {}
 ) {
     dispatch({
@@ -25,4 +43,4 @@ function fetchTitle(
         .finally(callback);
 }
 
-export { fetchTitle };
+export { addToWatched, addToWatchlist, fetchTitle };

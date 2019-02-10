@@ -2,7 +2,7 @@ import React from 'react';
 
 function Movies({ movies }: any) {
     return (
-        <div>
+        <div className="movies">
             {movies.map((movie: any) => (
                 <Movie
                     key={movie.imdbID}
@@ -17,13 +17,25 @@ function Movies({ movies }: any) {
 
 function Movie({ title, imdbID, poster }: any) {
     return (
-        <div>
-            <a href={`http://imdb.com/title/${imdbID}`}>{title}</a>
+        <div className="movies__movie">
+            <div className="movies__shortinfo" />
+            <h2>
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={`https://imdb.com/title/${imdbID}`}>
+                    {title}
+                </a>
+            </h2>
             <img
-                className="movie-poster"
+                className="movies__movie__poster"
                 src={poster}
                 alt={`Poster for ${title}`}
             />
+            <div className="movies_actions">
+                <button className="btn btn--watched">Watched</button>
+                <button className="btn btn--watchlist">Watchlist</button>
+            </div>
         </div>
     );
 }

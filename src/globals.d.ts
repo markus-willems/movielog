@@ -13,12 +13,12 @@ interface IOMDbSearchResponse {
     Response: string;
 }
 
-interface Action {
+interface DispatchAction {
     type: string;
     data?: any;
 }
 
-type ReducerType = (state: any, action: Action) => any;
+type ReducerType = (state: any, action: DispatchAction) => any;
 
 interface IWrapperProps {
     children: React.ReactNode;
