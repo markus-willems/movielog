@@ -13,6 +13,25 @@ interface IOMDbSearchResponse {
     Response: string;
 }
 
+interface Movie {
+    id: string;
+    title: string;
+    year: string;
+    poster: string | null;
+}
+
+interface IMoviesProps {
+    movies: Movie[];
+    addToWatched: (movie: Movie) => void;
+    addToWatchlist: (movie: Movie) => void;
+}
+
+interface IMovieProps {
+    movie: Movie;
+    addToWatched: (movie: Movie) => void;
+    addToWatchlist: (movie: Movie) => void;
+}
+
 interface DispatchAction {
     type: string;
     data?: any;

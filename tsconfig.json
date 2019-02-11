@@ -1,16 +1,16 @@
 {
-	"compilerOptions": {
-		"noImplicitAny": true,
-		"strictNullChecks": true,
-		"noImplicitThis": true,
-		"alwaysStrict": true,
-		"sourceMap": true,
-		"jsx": "react",
-		"target": "es5",
-		"downlevelIteration": true,
-		"lib": ["dom", "es2018"],
-		"allowSyntheticDefaultImports": true
-	},
-	"include": ["src/**/*"],
-	"exclude": ["node_modules", "__tests__"]
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "sourceMap": true,
+        "jsx": "react",
+        "target": "es5",
+        "downlevelIteration": true,
+        "lib": ["dom", "es2018"],
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "__tests__"]
 }

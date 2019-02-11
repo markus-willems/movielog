@@ -10,7 +10,32 @@ interface IMoviesState {
     watched: string[];
     watchlist: string[];
     byId: {
-        [movieId: string]: IOMDbSearchTitle;
+        [movieId: string]: Movie;
+    };
+}
+
+function processAddToWatched(state: IMoviesState, { movie }: { movie: Movie }) {
+    return {
+        ...state,
+        byId: {
+            ...state.byId,
+            [movie.id]: movie,
+        },
+        watched: [...new Set(state.watched.concat(movie.id))],
+    };
+}
+
+function processAddToWatchlist(
+    state: IMoviesState,
+    { movie }: { movie: Movie }
+) {
+    return {
+        ...state,
+        byId: {
+            ...state.byId,
+            [movie.id]: movie,
+        },
+        watchlist: [...new Set(state.watchlist.concat(movie.id))],
     };
 }
 
@@ -19,12 +44,13 @@ function moviesReducer(
     action: { type: string; data?: any }
 ) {
     switch (action.type) {
-        case actionTypes.FETCH_SEARCH_TITLE_SUCCESS:
-            return extendById(state, action.data);
-        case actionTypes.FETCH_SEARCH_TITLE_ERROR:
+        case actionTypes.ADD_TO_WATCHED:
+            return processAddToWatched(state, action.data);
+        case actionTypes.ADD_TO_WATCHLIST:
+            return processAddToWatchlist(state, action.data);
+        default:
             return state;
     }
-    return state;
 }
 
 function extendById(prevState: IMoviesState, movies: IOMDbSearchTitle[]) {

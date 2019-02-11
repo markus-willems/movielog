@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Movies from '../containers/MoviesContainer';
+import Movies from '../containers/SearchResultContainer';
 
 function Index() {
     return (

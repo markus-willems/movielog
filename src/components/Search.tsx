@@ -1,15 +1,15 @@
 import React, { FormEvent, useContext, useState } from 'react';
-import { fetchTitle } from '../actions';
-import { DataProviderDispatchContext } from '../providers/DataProvider';
+import { searchTitle } from '../actions';
+import { SearchProviderDispatchContext } from '../providers/SearchProvider';
 
 function Search() {
-    const dispatch = useContext(DataProviderDispatchContext);
+    const setSearchResult = useContext(SearchProviderDispatchContext);
     const [inputValue, setInputValue] = useState('');
 
     function onSubmitHandler(e: FormEvent) {
         e.preventDefault();
 
-        fetchTitle(inputValue, dispatch, () => setInputValue(''));
+        searchTitle(inputValue, setSearchResult, () => setInputValue(''));
     }
 
     return (

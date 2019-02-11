@@ -29,8 +29,8 @@ function mapDispatchToProps(
     dispatch: (action: DispatchAction) => DispatchAction
 ) {
     return {
-        addToWatched: (id: string) => dispatch(addToWatched(id)),
-        addToWatchlist: (id: string) => dispatch(addToWatchlist(id)),
+        addToWatched: (movie: Movie) => dispatch(addToWatched(movie)),
+        addToWatchlist: (movie: Movie) => dispatch(addToWatchlist(movie)),
     };
 }
 

@@ -1,9 +1,13 @@
 import React from 'react';
 
 function useRootReducer(rootReducer: ReducerType) {
-    const initialState = rootReducer(undefined, {
-        type: '@@INIT_STATE@@',
-    });
+    const initialState = React.useMemo(
+        () =>
+            rootReducer(undefined, {
+                type: '@@INIT_STATE@@',
+            }),
+        [rootReducer]
+    );
     const [state, dispatch] = React.useReducer(rootReducer, initialState);
     return [state, dispatch];
 }

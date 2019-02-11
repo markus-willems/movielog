@@ -1,21 +1,22 @@
 import React from 'react';
 
-function Movies({ movies }: any) {
+function Movies({ movies, addToWatched, addToWatchlist }: IMoviesProps) {
     return (
         <div className="movies">
-            {movies.map((movie: any) => (
+            {movies.map((movie: Movie) => (
                 <Movie
-                    key={movie.imdbID}
-                    imdbID={movie.imdbID}
-                    title={movie.Title}
-                    poster={movie.Poster}
+                    key={movie.id}
+                    movie={movie}
+                    addToWatched={addToWatched}
+                    addToWatchlist={addToWatchlist}
                 />
             ))}
         </div>
     );
 }
 
-function Movie({ title, imdbID, poster }: any) {
+function Movie({ movie, addToWatched, addToWatchlist }: IMovieProps) {
+    const { title, id, poster, year } = movie;
     return (
         <div className="movies__movie">
             <div className="movies__shortinfo" />
@@ -23,18 +24,26 @@ function Movie({ title, imdbID, poster }: any) {
                 <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href={`https://imdb.com/title/${imdbID}`}>
-                    {title}
+                    href={`https://imdb.com/title/${id}`}>
+                    {title} ({year})
                 </a>
             </h2>
             <img
                 className="movies__movie__poster"
-                src={poster}
+                src={poster ? poster : 'default_image'}
                 alt={`Poster for ${title}`}
             />
             <div className="movies_actions">
-                <button className="btn btn--watched">Watched</button>
-                <button className="btn btn--watchlist">Watchlist</button>
+                <button
+                    onClick={() => addToWatched(movie)}
+                    className="btn btn--watched">
+                    Watched
+                </button>
+                <button
+                    onClick={() => addToWatchlist(movie)}
+                    className="btn btn--watchlist">
+                    Watchlist
+                </button>
             </div>
         </div>
     );

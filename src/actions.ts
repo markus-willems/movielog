@@ -1,46 +1,36 @@
 import * as actionTypes from './actionTypes';
-import { searchTitle } from './api/search';
+import { titleSearchMapper } from './api/mapper';
+import { searchByTitle } from './api/search';
 
-function addToWatched(id: string) {
+function addToWatched(movie: Movie) {
     return {
         type: actionTypes.ADD_TO_WATCHED,
         data: {
-            id,
+            movie,
         },
     };
 }
 
-function addToWatchlist(id: string) {
+function addToWatchlist(movie: Movie) {
     return {
         type: actionTypes.ADD_TO_WATCHLIST,
         data: {
-            id,
+            movie,
         },
     };
 }
 
-function fetchTitle(
+function searchTitle(
     title: string,
-    dispatch: (obj: DispatchAction) => void,
+    setSearchResult: (searchResult: Movie[]) => void,
     callback: () => void = () => {}
 ) {
-    dispatch({
-        type: actionTypes.FETCH_SEARCH_TITLE_REQUEST,
-    });
-    return searchTitle(title)
+    return searchByTitle(title)
         .then((res: IOMDbSearchResponse) => {
-            dispatch({
-                type: actionTypes.FETCH_SEARCH_TITLE_SUCCESS,
-                data: res.Search ? res.Search : [],
-            });
+            setSearchResult(titleSearchMapper(res));
         })
-        .catch((err: Error) =>
-            dispatch({
-                type: actionTypes.FETCH_SEARCH_TITLE_ERROR,
-                data: err,
-            })
-        )
+        .catch((err: Error) => console.error(err))
         .finally(callback);
 }
 
-export { addToWatched, addToWatchlist, fetchTitle };
+export { addToWatched, addToWatchlist, searchTitle };
