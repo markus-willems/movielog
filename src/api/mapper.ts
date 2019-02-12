@@ -1,5 +1,4 @@
 function titleSearchMapper({ Search }: IOMDbSearchResponse): Movie[] {
-    console.log('Search', Search);
     return Search
         ? Search.map((movie: IOMDbSearchTitle) => ({
               id: movie.imdbID,

@@ -20,6 +20,24 @@ function addToWatchlist(movie: Movie) {
     };
 }
 
+function removeFromWatched(movie: Movie) {
+    return {
+        type: actionTypes.REMOVE_FROM_WATCHED,
+        data: {
+            movie,
+        },
+    };
+}
+
+function removeFromWatchlist(movie: Movie) {
+    return {
+        type: actionTypes.REMOVE_FROM_WATCHLIST,
+        data: {
+            movie,
+        },
+    };
+}
+
 function searchTitle(
     title: string,
     setSearchResult: (searchResult: Movie[]) => void,
@@ -33,4 +51,10 @@ function searchTitle(
         .finally(callback);
 }
 
-export { addToWatched, addToWatchlist, searchTitle };
+export {
+    addToWatched,
+    addToWatchlist,
+    removeFromWatched,
+    removeFromWatchlist,
+    searchTitle,
+};

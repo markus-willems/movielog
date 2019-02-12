@@ -24,12 +24,20 @@ interface IMoviesProps {
     movies: Movie[];
     addToWatched: (movie: Movie) => void;
     addToWatchlist: (movie: Movie) => void;
+    isOnWatched: (movieId: string) => boolean;
+    isOnWatchlist: (movieId: string) => boolean;
+    removeFromWatched: (movie: Movie) => void;
+    removeFromWatchlist: (movie: Movie) => void;
 }
 
 interface IMovieProps {
     movie: Movie;
     addToWatched: (movie: Movie) => void;
     addToWatchlist: (movie: Movie) => void;
+    isOnWatched: (movieId: string) => boolean;
+    isOnWatchlist: (movieId: string) => boolean;
+    removeFromWatched: (movie: Movie) => void;
+    removeFromWatchlist: (movie: Movie) => void;
 }
 
 interface DispatchAction {

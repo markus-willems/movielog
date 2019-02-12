@@ -39,6 +39,38 @@ function processAddToWatchlist(
     };
 }
 
+export function processRemoveFromWatched(
+    state: IMoviesState,
+    { movie }: { movie: Movie }
+) {
+    return {
+        ...state,
+        byId: {
+            ...state.byId,
+            [movie.id]: movie,
+        },
+        watched: state.watched.filter(
+            (movieId: string) => movieId !== movie.id
+        ),
+    };
+}
+
+export function processRemoveFromWatchlist(
+    state: IMoviesState,
+    { movie }: { movie: Movie }
+) {
+    return {
+        ...state,
+        byId: {
+            ...state.byId,
+            [movie.id]: movie,
+        },
+        watchlist: state.watchlist.filter(
+            (movieId: string) => movieId !== movie.id
+        ),
+    };
+}
+
 function moviesReducer(
     state: IMoviesState = initialState,
     action: { type: string; data?: any }
@@ -48,18 +80,13 @@ function moviesReducer(
             return processAddToWatched(state, action.data);
         case actionTypes.ADD_TO_WATCHLIST:
             return processAddToWatchlist(state, action.data);
+        case actionTypes.REMOVE_FROM_WATCHED:
+            return processRemoveFromWatched(state, action.data);
+        case actionTypes.REMOVE_FROM_WATCHLIST:
+            return processRemoveFromWatchlist(state, action.data);
         default:
             return state;
     }
-}
-
-function extendById(prevState: IMoviesState, movies: IOMDbSearchTitle[]) {
-    const moviesById = movies.reduce((acc: any, movie: IOMDbSearchTitle) => {
-        acc[movie.imdbID] = movie;
-        return acc;
-    }, {});
-    const nextById = { ...prevState.byId, ...moviesById };
-    return { ...prevState, byId: nextById };
 }
 
 export function selectWatchedMovies({ byId, watched }: IMoviesState) {
@@ -68,10 +95,18 @@ export function selectWatchedMovies({ byId, watched }: IMoviesState) {
         .map((movieId: string) => byId[movieId]);
 }
 
+export function isOnWatched({ watched }: IMoviesState, movieId: string) {
+    return watched.includes(movieId);
+}
+
 export function selectWatchlistMovies({ byId, watchlist }: IMoviesState) {
     return Object.keys(byId)
         .filter((movieId: string) => watchlist.includes(movieId))
         .map((movieId: string) => byId[movieId]);
+}
+
+export function isOnWatchlist({ watchlist }: IMoviesState, movieId: string) {
+    return watchlist.includes(movieId);
 }
 
 export function selectAllMovies({ byId }: IMoviesState) {

@@ -1,6 +1,14 @@
 import React from 'react';
 
-function Movies({ movies, addToWatched, addToWatchlist }: IMoviesProps) {
+function Movies({
+    movies,
+    addToWatched,
+    addToWatchlist,
+    isOnWatched,
+    isOnWatchlist,
+    removeFromWatched,
+    removeFromWatchlist,
+}: IMoviesProps) {
     return (
         <div className="movies">
             {movies.map((movie: Movie) => (
@@ -9,14 +17,28 @@ function Movies({ movies, addToWatched, addToWatchlist }: IMoviesProps) {
                     movie={movie}
                     addToWatched={addToWatched}
                     addToWatchlist={addToWatchlist}
+                    isOnWatched={isOnWatched}
+                    isOnWatchlist={isOnWatchlist}
+                    removeFromWatched={removeFromWatched}
+                    removeFromWatchlist={removeFromWatchlist}
                 />
             ))}
         </div>
     );
 }
 
-function Movie({ movie, addToWatched, addToWatchlist }: IMovieProps) {
+function Movie({
+    movie,
+    addToWatched,
+    addToWatchlist,
+    isOnWatched,
+    isOnWatchlist,
+    removeFromWatched,
+    removeFromWatchlist,
+}: IMovieProps) {
     const { title, id, poster, year } = movie;
+    const movieIsOnWatched = isOnWatched(id);
+    const movieIsOnWatchlist = isOnWatchlist(id);
     return (
         <div className="movies__movie">
             <div className="movies__shortinfo" />
@@ -35,14 +57,23 @@ function Movie({ movie, addToWatched, addToWatchlist }: IMovieProps) {
             />
             <div className="movies_actions">
                 <button
-                    onClick={() => addToWatched(movie)}
+                    onClick={() =>
+                        movieIsOnWatched
+                            ? removeFromWatched(movie)
+                            : addToWatched(movie)
+                    }
                     className="btn btn--watched">
-                    Watched
+                    {movieIsOnWatched ? 'Remove from' : 'Add to'} {'Watched'}
                 </button>
                 <button
-                    onClick={() => addToWatchlist(movie)}
+                    onClick={() =>
+                        movieIsOnWatchlist
+                            ? removeFromWatchlist(movie)
+                            : addToWatchlist(movie)
+                    }
                     className="btn btn--watchlist">
-                    Watchlist
+                    {movieIsOnWatchlist ? 'Remove from' : 'Add to'}{' '}
+                    {'Watchlist'}
                 </button>
             </div>
         </div>

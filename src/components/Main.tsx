@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-// Routes
 import Index from '../routes/Index';
 import Watched from '../routes/Watched';
 import Watchlist from '../routes/Watchlist';
