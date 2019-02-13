@@ -1,11 +1,14 @@
 import React from 'react';
 
-function useRootReducer(rootReducer: ReducerType) {
+function useRootReducer(rootReducer: IReducer) {
     const initialState = React.useMemo(
         () =>
-            rootReducer(undefined, {
-                type: '@@INIT_STATE@@',
-            }),
+            rootReducer(
+                {},
+                {
+                    type: '@@INIT_STATE@@',
+                }
+            ),
         [rootReducer]
     );
     const [state, dispatch] = React.useReducer(rootReducer, initialState);
@@ -14,11 +17,11 @@ function useRootReducer(rootReducer: ReducerType) {
 
 function combineReducers(
     reducers: {
-        [partialState: string]: ReducerType;
+        [partialState: string]: IReducer;
     } = {}
 ) {
     const partialStates = Object.keys(reducers);
-    return function rootReducer(state: any = {}, action: DispatchAction) {
+    return function rootReducer(state: any = {}, action: any) {
         const nextState: any = {};
         for (const key of partialStates) {
             const reducer = reducers[key];

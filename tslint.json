@@ -5,7 +5,6 @@
         "semicolon": true,
         "no-console": false,
         "no-empty": false,
-        "interface-name": false,
         "object-literal-sort-keys": false
     }
 }

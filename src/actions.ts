@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 import { titleSearchMapper } from './api/mapper';
 import { searchByTitle } from './api/search';
 
-function addToWatched(movie: Movie) {
+function addToWatched(movie: IMovie) {
     return {
         type: actionTypes.ADD_TO_WATCHED,
         data: {
@@ -11,7 +11,7 @@ function addToWatched(movie: Movie) {
     };
 }
 
-function addToWatchlist(movie: Movie) {
+function addToWatchlist(movie: IMovie) {
     return {
         type: actionTypes.ADD_TO_WATCHLIST,
         data: {
@@ -20,7 +20,7 @@ function addToWatchlist(movie: Movie) {
     };
 }
 
-function removeFromWatched(movie: Movie) {
+function removeFromWatched(movie: IMovie) {
     return {
         type: actionTypes.REMOVE_FROM_WATCHED,
         data: {
@@ -29,7 +29,7 @@ function removeFromWatched(movie: Movie) {
     };
 }
 
-function removeFromWatchlist(movie: Movie) {
+function removeFromWatchlist(movie: IMovie) {
     return {
         type: actionTypes.REMOVE_FROM_WATCHLIST,
         data: {
@@ -40,7 +40,7 @@ function removeFromWatchlist(movie: Movie) {
 
 function searchTitle(
     title: string,
-    setSearchResult: (searchResult: Movie[]) => void,
+    setSearchResult: (searchResult: IMovie[]) => void,
     callback: () => void = () => {}
 ) {
     return searchByTitle(title)

@@ -1,3 +1,4 @@
+import { dissoc, flatten } from 'ramda';
 import * as actionTypes from '../actionTypes';
 
 const initialState: IMoviesState = {
@@ -6,28 +7,10 @@ const initialState: IMoviesState = {
     byId: {},
 };
 
-interface IMoviesState {
-    watched: string[];
-    watchlist: string[];
-    byId: {
-        [movieId: string]: Movie;
-    };
-}
-
-function processAddToWatched(state: IMoviesState, { movie }: { movie: Movie }) {
-    return {
-        ...state,
-        byId: {
-            ...state.byId,
-            [movie.id]: movie,
-        },
-        watched: [...new Set(state.watched.concat(movie.id))],
-    };
-}
-
-function processAddToWatchlist(
+function processAdd(
     state: IMoviesState,
-    { movie }: { movie: Movie }
+    { movie }: { movie: IMovie },
+    prop: 'watched' | 'watchlist'
 ) {
     return {
         ...state,
@@ -35,55 +18,48 @@ function processAddToWatchlist(
             ...state.byId,
             [movie.id]: movie,
         },
-        watchlist: [...new Set(state.watchlist.concat(movie.id))],
+        [prop]: flatten(state[prop].concat(movie.id)),
     };
 }
 
-export function processRemoveFromWatched(
+export function processRemove(
     state: IMoviesState,
-    { movie }: { movie: Movie }
+    { movie }: { movie: IMovie },
+    prop: 'watched' | 'watchlist'
 ) {
     return {
         ...state,
-        byId: {
-            ...state.byId,
-            [movie.id]: movie,
-        },
-        watched: state.watched.filter(
-            (movieId: string) => movieId !== movie.id
-        ),
+        byId: dissoc(movie.id, state.byId),
+        [prop]: state[prop].filter((movieId: string) => movieId !== movie.id),
     };
 }
 
-export function processRemoveFromWatchlist(
-    state: IMoviesState,
-    { movie }: { movie: Movie }
-) {
-    return {
-        ...state,
-        byId: {
-            ...state.byId,
-            [movie.id]: movie,
-        },
-        watchlist: state.watchlist.filter(
-            (movieId: string) => movieId !== movie.id
-        ),
-    };
-}
-
-function moviesReducer(
-    state: IMoviesState = initialState,
-    action: { type: string; data?: any }
-) {
+function moviesReducer(state: IMoviesState = initialState, action: IAction) {
     switch (action.type) {
         case actionTypes.ADD_TO_WATCHED:
-            return processAddToWatched(state, action.data);
+            return processAdd(
+                state,
+                action.data as { movie: IMovie },
+                'watched'
+            );
         case actionTypes.ADD_TO_WATCHLIST:
-            return processAddToWatchlist(state, action.data);
+            return processAdd(
+                state,
+                action.data as { movie: IMovie },
+                'watchlist'
+            );
         case actionTypes.REMOVE_FROM_WATCHED:
-            return processRemoveFromWatched(state, action.data);
+            return processRemove(
+                state,
+                action.data as { movie: IMovie },
+                'watched'
+            );
         case actionTypes.REMOVE_FROM_WATCHLIST:
-            return processRemoveFromWatchlist(state, action.data);
+            return processRemove(
+                state,
+                action.data as { movie: IMovie },
+                'watchlist'
+            );
         default:
             return state;
     }
