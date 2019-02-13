@@ -14,8 +14,7 @@ import {
 } from '../actions';
 
 import {
-    isOnWatched,
-    isOnWatchlist,
+    isOnList,
     selectWatchedMovies,
     selectWatchlistMovies,
 } from '../reducers/movies';
@@ -34,9 +33,9 @@ function useMoviesProps(type: string) {
                     ? selectWatchlistMovies(state.movies)
                     : searchResult,
             isOnWatched: (movieId: string) =>
-                isOnWatched(state.movies, movieId),
+                isOnList(state.movies, movieId, 'watched'),
             isOnWatchlist: (movieId: string) =>
-                isOnWatchlist(state.movies, movieId),
+                isOnList(state.movies, movieId, 'watchlist'),
         };
     }
 
