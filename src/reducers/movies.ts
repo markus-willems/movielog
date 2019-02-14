@@ -27,9 +27,13 @@ export function processRemove(
     { movie }: { movie: IMovie },
     prop: 'watched' | 'watchlist'
 ) {
+    const removeMetaData =
+        ([] as string[])
+            .concat(state.watched, state.watchlist)
+            .filter((id: string) => id === movie.id).length === 1;
     return {
         ...state,
-        byId: dissoc(movie.id, state.byId),
+        byId: removeMetaData ? dissoc(movie.id, state.byId) : state.byId,
         [prop]: state[prop].filter((movieId: string) => movieId !== movie.id),
     };
 }

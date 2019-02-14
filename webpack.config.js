@@ -6,6 +6,7 @@ const webpack = require('webpack');
 
 const config = {
     devServer: {
+        historyApiFallback: true,
         hot: true,
     },
     entry: './src/index.tsx',
