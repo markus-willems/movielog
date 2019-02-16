@@ -9,7 +9,7 @@ interface IOMDbSearchTitle {
 interface IOMDbSearchResponse {
     Error?: string;
     Search?: IOMDbSearchTitle[] | undefined;
-    totalResults?: string;
+    totalResults: string;
     Response: string;
 }
 
