@@ -9,7 +9,7 @@ function Search() {
     function onSubmitHandler(e: FormEvent) {
         e.preventDefault();
 
-        searchTitle(inputValue, setSearchResult, () => setInputValue(''));
+        searchTitle(inputValue, 1, setSearchResult, () => setInputValue(''));
     }
 
     return (

@@ -40,10 +40,14 @@ function removeFromWatchlist(movie: IMovie) {
 
 function searchTitle(
     title: string,
-    setSearchResult: (searchResult: IMovie[]) => void,
+    page: number = 1,
+    setSearchResult: (searchResult: {
+        movies: IMovie[];
+        totalResults: string;
+    }) => void,
     callback: () => void = () => {}
 ) {
-    return searchByTitle(title)
+    return searchByTitle(title, page)
         .then((res: IOMDbSearchResponse) => {
             setSearchResult(titleSearchMapper(res));
         })

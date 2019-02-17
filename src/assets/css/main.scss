@@ -2,15 +2,18 @@
 
 .container {
     display: flex;
-    width: 700px;
+    width: 750px;
     margin: 0 auto;
     flex-wrap: wrap;
-    background: $color1;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    cursor: pointer;
 }
 
 header {
     flex: 1 1 100%;
+    border-bottom: 1px solid rgb(233, 233, 233);
 }
 
 main {
@@ -27,13 +30,13 @@ footer {
 }
 
 .movies__movie {
-    background: gray;
-    flex: 1 1 100%;
+    flex: 1 1 50%;
     display: flex;
     flex-wrap: wrap;
     h2 {
         flex: 1 1 100%;
     }
+    box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn {

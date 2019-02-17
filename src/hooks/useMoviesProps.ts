@@ -31,7 +31,7 @@ function useMoviesProps(type: string) {
                     ? selectWatchedMovies(state.movies)
                     : type === 'watchlist'
                     ? selectWatchlistMovies(state.movies)
-                    : searchResult,
+                    : searchResult.movies,
             isOnWatched: (movieId: string) =>
                 isOnList(state.movies, movieId, 'watched'),
             isOnWatchlist: (movieId: string) =>

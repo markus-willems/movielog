@@ -22,7 +22,7 @@ describe('moviesReducer', () => {
     });
     it('should add movie to `byId` and watched', () => {
         const addToWatchedAction = {
-            type: 'ADD_TO_WATCHED',
+            type: actionTypes.ADD_TO_WATCHED,
             data: {
                 movie,
             },
@@ -39,7 +39,7 @@ describe('moviesReducer', () => {
     });
     it('should add movie to `byId` and watchlist', () => {
         const addToWatchlistAction = {
-            type: 'ADD_TO_WATCHLIST',
+            type: actionTypes.ADD_TO_WATCHLIST,
             data: {
                 movie,
             },
@@ -56,7 +56,7 @@ describe('moviesReducer', () => {
     });
     it('should remove movie id from watched', () => {
         const removeFromWatchedAction = {
-            type: 'REMOVE_FROM_WATCHED',
+            type: actionTypes.REMOVE_FROM_WATCHED,
             data: {
                 movie,
             },
@@ -83,7 +83,7 @@ describe('moviesReducer', () => {
     });
     it('should remove movie id from watchlist', () => {
         const removeFromWatchlistAction = {
-            type: 'REMOVE_FROM_WATCHLIST',
+            type: actionTypes.REMOVE_FROM_WATCHLIST,
             data: {
                 movie,
             },
@@ -110,7 +110,7 @@ describe('moviesReducer', () => {
     });
     it('should remove movie id from watchlist and movie from `byId` when watchlist was the only list referencing that movie', () => {
         const removeFromWatchlistAction = {
-            type: 'REMOVE_FROM_WATCHLIST',
+            type: actionTypes.REMOVE_FROM_WATCHLIST,
             data: {
                 movie,
             },
