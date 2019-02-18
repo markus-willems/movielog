@@ -36,6 +36,7 @@ function useMoviesProps(type: string) {
                 isOnList(state.movies, movieId, 'watched'),
             isOnWatchlist: (movieId: string) =>
                 isOnList(state.movies, movieId, 'watchlist'),
+            totalResults: searchResult.totalResult,
         };
     }
 

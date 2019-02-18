@@ -1,9 +1,13 @@
 import React, { FormEvent, useContext, useState } from 'react';
 import { searchTitle } from '../actions';
-import { SearchProviderDispatchContext } from '../providers/SearchProvider';
+import {
+    SearchProviderDispatchContext,
+    SearchProviderStateContext,
+} from '../providers/SearchProvider';
 
 function Search() {
     const setSearchResult = useContext(SearchProviderDispatchContext);
+    const searchResult = useContext(SearchProviderStateContext);
     const [inputValue, setInputValue] = useState('');
 
     function onSubmitHandler(e: FormEvent) {

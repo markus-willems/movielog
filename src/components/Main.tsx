@@ -9,8 +9,8 @@ function Main() {
     return (
         <main>
             <Route exact={true} path="/" component={Index} />
-            <Route path="/watchlist" component={Watchlist} />
-            <Route path="/watched" component={Watched} />
+            <Route path="/watchlist/:page?" component={Watchlist} />
+            <Route path="/watched/:page?" component={Watched} />
         </main>
     );
 }

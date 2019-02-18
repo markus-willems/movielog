@@ -1,11 +1,12 @@
 import React from 'react';
+import { RouteComponentProps } from 'react-router';
 
 import Movies from '../containers/WatchedContainer';
 
-function Watched() {
+function Watched(props: RouteComponentProps) {
     return (
         <div>
-            <Movies />
+            <Movies {...props} />
         </div>
     );
 }

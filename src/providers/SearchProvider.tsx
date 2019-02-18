@@ -11,7 +11,6 @@ function SearchProvider({ children }: any) {
         movies: IMovie[];
         totalResult: string;
     }>({ movies: [], totalResult: '0' });
-    console.log('searchResult', searchResult);
     return (
         <SearchProviderDispatchContext.Provider value={setSearchResult}>
             <SearchProviderStateContext.Provider value={searchResult}>

@@ -39,6 +39,7 @@ interface IMoviesFunctions {
 
 interface IMoviesProps extends IMoviesFunctions {
     movies: IMovie[];
+    totalResults: string;
 }
 
 interface IMovieProps extends IMoviesFunctions {
@@ -62,4 +63,9 @@ interface IWrapperProps {
 
 interface IApplicationState {
     movies: IMoviesState;
+}
+
+interface IPaginationProps {
+    numberOfPages: number;
+    currentPage: number;
 }
